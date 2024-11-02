@@ -1,10 +1,18 @@
 // Importing required modules
 const express = require('express');
 const router = express.Router()
+const Book = require('../models/book')
 
 
-router.get('/',(req,res) =>{
-    res.send('index')
+router.get('/',async(req,res) =>{
+    let books 
+    try {
+        books = Book.find().sort({createdAt: 'desc'}).limit(10).exec()
+    } catch {
+        books = []
+        
+    }
+    res.render('index',{books: books})
 })
 
 // const app = express();

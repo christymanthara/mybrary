@@ -10,7 +10,7 @@ const bodyParser = require('body-parser')
 
 const IndexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
-
+const bookRouter = require('./routes/books')
 
 
 app.set('view engine', 'ejs')
@@ -29,5 +29,6 @@ db.once('open', () => console.log('Connected to mongoose'))
 
 app.use('/',IndexRouter) //using it on root
 app.use('/authors',authorRouter) //using /author with everything in authors. means we are prepending
+app.use('/books',bookRouter)
 
 app.listen(process.env.PORT || 3000)
